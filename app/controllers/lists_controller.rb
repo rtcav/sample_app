@@ -14,8 +14,6 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = List.all
-    # @listと@listsは違う
   end
 
   def show
