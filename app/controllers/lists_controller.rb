@@ -10,10 +10,11 @@ class ListsController < ApplicationController
     # 3. データをデータベースに保存するためのsaveメソッド実行
     list.save
     # 4. トップ画面へリダイレクト
-    redirect_to '/top'
+    redirect_to list_path(list.id)
   end
 
   def index
+    @lists = List.all
   end
 
   def show
@@ -21,8 +22,14 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list = List.find(params[:id])
   end
 
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
+  end
 
   private #書き忘れた
   #ストロングパラメータ その下のアクションに影響を与えるため最後に記述
